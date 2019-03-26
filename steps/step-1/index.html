@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Worker Demo</title>
+</head>
+<script>
+  navigator.serviceWorker.register('./sw.js')
+    .then(function(reg) {
+      // регистрация сработала
+      console.log('Registration succeeded. Scope is ' + reg.scope);
+    })
+    .catch(function(error) {
+      // регистрация прошла неудачно
+      console.log('Registration failed with ' + error);
+    });
+</script>
+<script src="index.js"></script>
+</html>
