@@ -1,10 +1,14 @@
 const CACHE_NAME = `TASK_MANAGER`;
 
+// Настроим кеширование статики во время установки SW.
 self.addEventListener(`install`, (evt) => {
   console.log(`sw, install`, {evt});
+  // Активация SW не произойдет, пока кеш не будет настроен.
   evt.waitUntil(
+    // Открываем наш кеш.
     caches.open(CACHE_NAME)
       .then((cache) => {
+        // Добавляем в кеш список статических ресурсов.
         return cache.addAll([
           `./`,
           `./index.html`,

@@ -5,13 +5,14 @@
     <title>Service Worker Demo</title>
 </head>
 <script>
+  // Регистрация сервис-воркера в браузере
   navigator.serviceWorker.register('./sw.js')
     .then(function(reg) {
-      // регистрация сработала
+      // Регистрация сработала
       console.log('Registration succeeded. Scope is ' + reg.scope);
     })
     .catch(function(error) {
-      // регистрация прошла неудачно
+      // Регистрация прошла неудачно
       console.log('Registration failed with ' + error);
     });
 </script>
