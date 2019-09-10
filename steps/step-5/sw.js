@@ -1,15 +1,19 @@
 const CACHE_NAME = `DEMO_APP`;
 
+// Настроим кеширование статики во время установки SW.
 self.addEventListener('install', (evt) => {
   console.log('sw, install', {evt});
+  // Активация SW не произойдет, пока кеш не будет настроен.
   evt.waitUntil(
+    // Открываем наш кеш.
     caches.open(CACHE_NAME)
       .then((cache) => {
+        // Добавляем в кеш список статических ресурсов.
         return cache.addAll([
           '/',
           '/index.html',
           '/index.js'
-        ])
+        ]);
       })
   );
 });
@@ -18,6 +22,7 @@ self.addEventListener('activate', (evt) => {
   console.log('sw', 'activate', {evt});
 });
 
+// Пример аналогичен предыдущему шагу.
 self.addEventListener('fetch', (evt) => {
   console.log('fetch', {evt, request: evt.request});
   evt.respondWith(
